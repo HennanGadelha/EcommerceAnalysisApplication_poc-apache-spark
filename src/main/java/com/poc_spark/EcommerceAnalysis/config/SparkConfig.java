@@ -11,8 +11,8 @@ public class SparkConfig {
     public SparkSession sparkSession() {
         return SparkSession.builder()
                 .appName("EcommerceAnalysis")
-                .master("local[*]")
-                .config("spark.ui.enabled", "true")
+                .master("spark://spark-master:7077")
+                .config("spark.ui.enabled", "false")
                 .getOrCreate();
     }
 }
