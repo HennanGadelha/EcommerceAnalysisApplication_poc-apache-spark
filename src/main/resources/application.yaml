@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: EcommerceAnalysis
+
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# Logging
+logging:
+  level:
+    root: INFO
+    org.apache.spark: WARN
+    com.poc_spark: DEBUG
+
+# Configurações customizadas
+app:
+  spark:
+    master: local[*]
+    memory: 1g
+    shuffle-partitions: 4
+  data:
+    path: vendas_2024.csv
