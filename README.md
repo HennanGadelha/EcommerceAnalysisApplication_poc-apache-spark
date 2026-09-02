@@ -18,9 +18,14 @@ Sumário rápido:
 
 - SalesSparkDataSource.java
   - Recebe a SparkSession via injeção de dependência e faz `loadData()` no construtor.
-  - loadData(): lê `/data/ecommerce.csv` com header e inferSchema, faz `sales.cache()` e em seguida `sales.count()`.
-    - cache() + count() tem o objetivo de materializar o dataset em memória no startup (evita overhead de criação repetida e acelera consultas subsequentes).
+  - loadData(): lê `/data/ecommerce.csv` com header e `inferSchema`, faz `sales.cache()` e em seguida `sales.count()`.
+    - `cache()` + `count()` tem o objetivo de materializar o dataset em memória no startup (evita overhead de criação repetida e acelera consultas subsequentes).
     - Ponto importante: carregar e cachear na inicialização reduz latência das primeiras requisições, porém aumenta o tempo/memória de startup.
+
+  - Dados de teste (observação):
+    - Por padrão o caminho lido é `/data/ecommerce.csv`. Para testes locais coloque um CSV com este nome nesse diretório ou ajuste o caminho no código.
+    - Há uma massa de testes com cerca de 1.000.000 (um milhão) de registros compactada no diretório `data` do projeto: `data/ecommerce.rar`. Extraia esse arquivo para obter `data/ecommerce.csv` e usar como dataset de teste.
+    - Atenção: esse CSV grande consome memória ao ser cacheado; em máquinas com pouca memória ajuste a estratégia (ex.: não cachear todo o dataset, usar amostragem ou particionar em arquivos menores).
 
 - service/SalesService.java
   - Camada que aplica transformações Spark (DataFrame API) sobre o Dataset carregado e retorna DTOs para a API.
