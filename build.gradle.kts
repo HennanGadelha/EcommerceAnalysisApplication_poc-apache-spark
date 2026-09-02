@@ -31,8 +31,8 @@ dependencies {
 		exclude(group = "org.apache.logging.log4j", module = "log4j-slf4j2-impl")
 	}
 	implementation("javax.servlet:javax.servlet-api:4.0.1")
-//	implementation("org.springframework.boot:spring-boot-starter-actuator")
-//	implementation("io.micrometer:micrometer-registry-prometheus")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("io.micrometer:micrometer-registry-prometheus")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.mockito:mockito-core")
