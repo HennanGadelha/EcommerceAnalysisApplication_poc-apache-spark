@@ -27,10 +27,12 @@ configurations {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.apache.spark:spark-sql_2.13:3.5.1") {
+	implementation("org.apache.spark:spark-sql_2.12:3.5.1") {
 		exclude(group = "org.apache.logging.log4j", module = "log4j-slf4j2-impl")
 	}
-//	implementation("javax.servlet:javax.servlet-api:4.0.1")
+	implementation("javax.servlet:javax.servlet-api:4.0.1")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("io.micrometer:micrometer-registry-prometheus")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.mockito:mockito-core")
